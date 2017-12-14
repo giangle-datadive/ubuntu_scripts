@@ -1,20 +1,20 @@
 sudo apt-get update
-#nginx
-sudo apt-get install nginx -y
+#apache2
+sudo apt-get install apache2 -y
+ 
 #mysql
 sudo apt-get install mariadb-server -y
 sudo service mysql start
-clear
-echo "================================================================="
+echo "======================================================================="
 echo -e "Enter mysql password: \c"
 read -s password
 echo
-echo -e "Enter confirmation mysql password: \c"
+echo -e "confirmation mysql password: \c"
 read -s password2
 echo
 if [ $password -eq $password2 ]
 then
-sudo mysql_secure_installation <<EOF
+mysql_secure_installation <<EOF
 y
 $password
 $password
@@ -23,10 +23,10 @@ y
 y
 y
 EOF
-#php
+##php
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt-get update
-sudo apt-get install php7.1 php7.1-fpm php7.1-mysql php7.1-mbstring php7.1-xml php7.1-mcrypt -y
+sudo apt-get install php7.1 libapache2-mod-php php7.1-mcrypt php7.1-fpm php7.1-mysql php7.1-mbstring php7.1-xml -y
 #nodejs
 sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -39,23 +39,19 @@ sudo apt-get install composer -y
 sudo apt-get install zip unzip
 #git
 sudo apt-get install git
-#mkdir projects
-sudo mkdir ~/projects
-sudo chown -R ubuntu ~/projects
-sudo chown -R www-data ~/project
-#add default config for php
-sudo wget https://raw.githubusercontent.com/gianglevan94/ubuntu_scripts/master/virtualhost_nginx -P /etc/nginx/sites-available/
-#restart server
-sudo service php7.1-fpm restart
-sudo service nginx restart
+sudo truncate -s 0 /etc/apache2/mods-enabled/dir.conf
+sudo echo "<IfModule mod_dir.c>
+   DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
+</IfModule>" >> /etc/apache2/mods-enabled/dir.conf
+sudo service apache2 restart
 clear
 echo "=============================="
 echo "=                            ="
 echo "=                            ="
-echo "=   Install Nginx Succeseed  ="
+echo "=  Install Apache Succeseed  ="
 echo "=                            ="
 echo "=                            ="
 echo "=============================="
 else
-echo "Password confirmation not match"
+  echo "Password confirmation not match"
 fi
