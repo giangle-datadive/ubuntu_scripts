@@ -26,7 +26,7 @@ EOF
 ##php
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt-get update
-sudo apt-get install php7.1 libapache2-mod-php php7.1-mcrypt php7.1-fpm php7.1-mysql php7.1-mbstring php7.1-xml -y
+sudo apt-get install php7.2 libapache2-mod-php php7.2-mcrypt php7.2-fpm php7.2-mysql php7.2-mbstring php7.2-xml -y
 #nodejs
 sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs

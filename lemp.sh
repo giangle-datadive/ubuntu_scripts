@@ -26,7 +26,7 @@ EOF
 #php
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt-get update
-sudo apt-get install php7.1 php7.1-fpm php7.1-mysql php7.1-mbstring php7.1-xml php7.1-mcrypt -y
+sudo apt-get install php7.2 php7.2-fpm php7.2-mysql php7.2-mbstring php7.2-xml php7.2-mcrypt -y
 #nodejs
 sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -46,7 +46,7 @@ sudo chown -R www-data ~/project
 #add default config for php
 sudo wget https://raw.githubusercontent.com/gianglevan94/ubuntu_scripts/master/virtualhost_nginx -P /etc/nginx/sites-available/
 #restart server
-sudo service php7.1-fpm restart
+sudo service php7.2-fpm restart
 sudo service nginx restart
 clear
 echo "=============================="
